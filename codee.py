@@ -1,7 +1,7 @@
 import threading 
 import time
 
-d={} #'d' is the dictionary in which we store data
+d={} 
 
 
 def create(key,value,timeout=0):
@@ -16,32 +16,32 @@ def create(key,value,timeout=0):
             else:
                 print("error: Memory limit exceeded!! ")
         else:
-            print("error: Invalind key_name!! key_name must contain only alphabets and no special characters or numbers")#error message3
+            print("error: Invalind key_name!! key_name must contain only alphabets and no special characters or numbers")
 
-#for read operation
-#use syntax "read(key_name)"
+"""for read operation
+use syntax "read(key_name)" """
             
 def read(key):
     if key not in d:
-        print("error: given key does not exist in database. Please enter a valid key") #error message4
+        print("error: given key does not exist in database. Please enter a valid key") 
     else:
         b=d[key]
         if b[1]!=0:
             if time.time()<b[1]: #comparing the present time with expiry time
-                i=str(key)+":"+str(b[0]) #to return the value in the format of JasonObject i.e.,"key_name:value"
+                i=str(key)+":"+str(b[0]) #to return the value in the format i.e.,"key_name:value"
                 print(i)
             else:
-                print("error: time-to-live of",key,"has expired") #error message5
+                print("error: time-to-live of",key,"has expired") 
         else:
             i=str(key)+":"+str(b[0])
             print(i)
 
-#for delete operation
-#use syntax "delete(key_name)"
+"""for delete operation
+use syntax "delete(key_name)" """
 
 def delete(key):
     if key not in d:
-        print("error: given key does not exist in database. Please enter a valid key") #error message4
+        print("error: given key does not exist in database. Please enter a valid key") 
     else:
         b=d[key]
         if b[1]!=0:
@@ -49,7 +49,7 @@ def delete(key):
                 del d[key]
                 print("key is successfully deleted")
             else:
-                print("error: time-to-live of",key,"has expired") #error message5
+                print("error: time-to-live of",key,"has expired") 
         else:
             del d[key]
             print("key is successfully deleted")
